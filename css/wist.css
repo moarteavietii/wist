@@ -1,0 +1,185 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	font-family: Verdana;
+	font-size: 1em;
+	color: black;
+}
+label {
+	float: left;
+	margin-right: 10px;
+}
+select {
+	width: 50px;
+}
+input[type="text"] {
+	line-height: 0;
+	width: 10em;
+}
+hr {
+	width: 100%;
+	margin-bottom: 7px;
+	border: 0 none;
+	border-top: 1px solid white;
+}
+.hidden {
+	display: none;
+}
+.fullview {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.header {
+	position: fixed;
+	width: 100%;
+	height: 10%;
+	top: 0;
+	background-color: rgb(252, 232, 151);
+	text-align: center;
+}
+.subheader {
+	background-color: rgb(215, 236, 248);
+	width: 100%;
+	float: left;
+	text-align: center;
+	padding: 10px 0;
+	margin-top: 10px;
+	box-shadow: 0px -6px 6px 2px rgb(215, 236, 248);
+}
+.midContent {
+	position: absolute;
+	width: 100%;
+	height: 80%;
+	overflow: auto;
+	top: 10%;
+	text-align: left;
+	z-index: 0;
+	padding-top: 10px;
+}
+.footer {
+	position: fixed;
+	width: 100%;
+	height: 10%;
+	top: 90%;
+	background-color: rgb(252, 232, 151);
+	padding-top: 10px;
+	text-align: center;
+}
+.bets, .answers, .totals {
+	background-color: rgb(136, 176, 196);
+	width: 100%;
+	height: 4em;
+	float: left;
+	text-align: center;
+}
+.player, .state {
+	padding-top: 10px;
+	float: left;
+	height: 100%;
+	text-align: center;
+	border-left: 1px solid rgb(6, 87, 150);
+	box-sizing: border-box;
+}
+.cPlayer {
+	width: 50%;
+	background-color: rgb(215, 236, 248);
+}
+.select {
+	padding-top: 10px;
+	float: left;
+	border-left: 1px solid rgb(29, 127, 184);
+	box-sizing: border-box;
+	height: 100%;
+}
+.total {
+	float: left;
+	border-left: 1px solid rgb(156, 218, 247);
+}
+.consRight {
+	color: rgb(13, 160, 13);
+	font-size: 0.5em;
+	display: inline;
+	font-weight: normal;
+	line-height: 4em;
+}
+.consWrong {
+	color: rgb(253, 69, 69);
+	font-size: 0.5em;
+	display: inline;
+	font-weight: normal;
+	line-height: 4em;
+}
+#settings {
+	height: 90%;
+	width: 100%;
+	top: -100%;
+	left: 0;
+	position: absolute;
+	background-color: rgb(166, 195, 223);
+}
+#settings .midContent {
+	top: 13%;
+	text-align: right;
+}
+.setting {
+	width: 90%;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+#history {
+	height: 90%;
+	width: 100%;
+	top: 0;
+	left: -100%;
+	position: absolute;
+	background-color: rgb(166, 195, 223);
+}
+#history .midContent {
+	top: 13%;
+}
+#history .select {
+	height: 10%;
+}
+.history {
+	width: 100	%;
+}
+#playGame {
+	display: none;
+}
+#main {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+#blanks {
+	display: none;
+}
+.blockMsg h1 {
+	font-size: 0.5em;
+	line-height: 4em;
+}
+#totHeader {
+	margin-top: 20px;
+}
+#totals {
+	margin-top: 10px;
+	background-color: white;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+#roundNumber {
+	font-size: 0.8em;
+	line-height: 0.8em;
+	color: rgb(0, 82, 170);
+}
+button {
+	background-color: rgb(215, 236, 248);
+	border: 3px solid rgb(255, 255, 255);
+	border-radius: 16px;
+}
