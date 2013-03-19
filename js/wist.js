@@ -3,15 +3,18 @@ currentPlayer = {}; // the current player
 currentRound = 0; // the current game round
 maxRounds = 12; // number of rounds calculated depending on players count
 firstPlayerId = 1; // first player index
+lastPlayerId = 3; // the last payer id
 firstPlayer = {}; // the first player instance
 playerWidth = '33%'; // the total width in interface alocated to a player
 zeroPoints = 1; // the bonus that is added when the players bet is correct
 prize = 10; // the bonus on for matches
+currentCardsRound = 1; // the number of cards for the current round
 
 $(document).ready(function() {
 	resetGame();
 
 	$('#playersCount').change(function() {addPlayers($(this).val())});
+	$('.bet').change(function() {restrictLastPlayer()});
 	$('#begin').click(function() {startGame()});
 	$('.fp').click(function() {setFirstPlayer($(this))});
 	$('#nextRound').click(function() {playNextRound()});
@@ -49,7 +52,9 @@ function resetGame() {
 	maxRounds = 12;
 	firstPlayerId = 1;
 	firstPlayer = {};
+	lastPlayerId = 3;
 	playerWidth = '33%';
+	currentCardsRound = 1;
 
 	//TODO: initiate the css for hidden divs
 
@@ -131,6 +136,7 @@ function initBoard() {
 
 		if(currentPlayer.id == firstPlayerId) {
 			firstPlayer = currentPlayer;
+			computeLastPlayer();
 			playerDiv.addClass('cPlayer');
 		}
 
@@ -198,6 +204,7 @@ function playNextRound() {
 }
 
 function playRound(round) {
+	currentCardsRound = round;
 	$('#stopBets').removeAttr('disabled');
 
 	if(currentRound > 12 + 3 * playersCount) {
@@ -240,11 +247,13 @@ function playRound(round) {
 
 			if(currentPlayer.id == firstPlayerId) {
 				firstPlayer = currentPlayer;
+				computeLastPlayer();
 				$('#playerdiv_' + firstPlayerId).addClass('cPlayer');
 			}
 		}
 	});
 	$('.select').css({'width': playerWidth});
+	$('.bet').change(function() {restrictLastPlayer()});
 	$.unblockUI();
 	$('#scoreComputer').removeAttr('disabled');
 }
@@ -336,4 +345,51 @@ function updateHistory() {
 	history += $('#totals').html() + '<hr/></div>';
 	$('#history .midContent').append(history);
 	$('.select').css({'width' : playerWidth});
+}
+
+function restrictLastPlayer () {
+	$('.bet option').removeAttr('disabled');
+
+	betsum = 0;
+	$('.bet').each(function (index, value) {
+		if(index + 1 != lastPlayerId) {
+			betsum += parseInt($(value).val());
+		} else {
+			lastBet = $(value).val();
+		}
+	});
+
+	if(betsum > currentCardsRound) {
+		return;
+	}
+
+	restrictedBet = currentCardsRound - betsum;
+
+	$('#bet_' + lastPlayerId + ' option[value="' + restrictedBet + '"]').attr('disabled', 'disabled');
+
+	if(lastBet == restrictedBet) {
+		if(restrictedBet == 0) {
+			$('#bet_' + lastPlayerId).val(1);
+			return;
+		}
+		if(restrictedBet == currentCardsRound) {
+			$('#bet_' + lastPlayerId).val(currentCardsRound - 1);
+			return;
+		}
+		if(restrictedBet != 0 && restrictedBet != currentCardsRound) {
+			$('#bet_' + lastPlayerId).val(restrictedBet - 1);
+			return;
+		}
+	}
+
+
+	restrictedBet = -1;
+}
+
+function computeLastPlayer () {
+	lastPlayerId = firstPlayerId - 1;
+
+	if(lastPlayerId < 1) {
+		lastPlayerId += parseInt(playersCount);
+	}
 }
