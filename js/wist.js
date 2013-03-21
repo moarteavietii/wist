@@ -42,6 +42,10 @@ $(document).ready(function() {
 		min_move_x: 20,
 		min_move_y: 20
 	});
+
+	window.onbeforeunload = function() {
+		return "Warning: you are about to loose the current game state";
+    }
 });
 
 //resets the game to an initial state
