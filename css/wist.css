@@ -98,6 +98,9 @@ hr {
 .total {
 	float: left;
 	border-left: 1px solid rgb(156, 218, 247);
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 .consRight {
 	color: rgb(13, 160, 13);
